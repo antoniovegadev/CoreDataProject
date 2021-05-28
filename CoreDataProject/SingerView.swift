@@ -13,7 +13,9 @@ struct SingerView: View {
     
     var body: some View {
         VStack {
-            FilteredList(filter: lastNameFilter)
+            FilteredList(filterKey: "lastName", filterValue: lastNameFilter, sortDescriptors: [NSSortDescriptor(key: "firstName", ascending: false)]) { (singer: Singer) in
+                Text("\(singer.wrappedFirstName) \(singer.wrappedLastName)")
+            }
             
             Button("Add Examples") {
                 let taylor = Singer(context: self.moc)
